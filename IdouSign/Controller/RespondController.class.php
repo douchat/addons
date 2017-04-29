@@ -26,8 +26,12 @@ class RespondController extends ApiController {
 			$insert['continue_times'] = 1;									// 连续签到次数
 			$insert['score'] = $settings['per_score'];						// 签到获取积分
 			$res = M('idou_sign_record')->add($insert);
-			if ($res) {
+			if ($settings['sign_success_tip']) {
+				$sign_success_tip = str_replace(array('{nickname}','{score}','{continue_times}','{total_times}'), array(get_fans_nickname(),$settings['per_score'],$insert['continue_times'],$insert['total_times']), $settings['sign_success_tip']);
+			} else {
 				$sign_success_tip = '签到成功，你获得'.$settings['per_score'].'积分';
+			}
+			if ($res) {
 				reply_text($sign_success_tip);
 			} else {
 				reply_text('签到失败');
@@ -51,10 +55,14 @@ class RespondController extends ApiController {
 			$insert['score'] = $settings['per_score'];						// 签到获取积分
 			$res = M('idou_sign_record')->add($insert);
 			if ($res) {
-				if ($continue_times == 1) {
-					$sign_success_tip = '签到成功，你获得'.$settings['per_score'].'积分，总签到次数：'.$insert['total_times'];
+				if ($settings['sign_success_tip']) {
+					$sign_success_tip = str_replace(array('{nickname}','{score}','{continue_times}','{total_times}'), array(get_fans_nickname(),$settings['per_score'],$insert['continue_times'],$insert['total_times']), $settings['sign_success_tip']);
 				} else {
-					$sign_success_tip = '签到成功，你获得'.$settings['per_score'].'积分，总签到次数：'.$insert['total_times'].'，连续签到次数：'.$continue_times;
+					if ($continue_times == 1) {
+						$sign_success_tip = '签到成功，你获得'.$settings['per_score'].'积分，总签到次数：'.$insert['total_times'];
+					} else {
+						$sign_success_tip = '签到成功，你获得'.$settings['per_score'].'积分，总签到次数：'.$insert['total_times'].'，连续签到次数：'.$continue_times;
+					}
 				}
 				reply_text($sign_success_tip);
 			} else {

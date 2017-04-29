@@ -5,7 +5,7 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
     <title>{$config['top_title']}</title>
-    {:hook('jssdk', true)}
+    {:hook('jssdk', false)}
     {:hook('import_css','frozen')}
 	<style type="text/css">
 		.feedback-form{
@@ -59,7 +59,7 @@
 		</div>
 	</section>
 
-	{:hook('import_js',array('zepto.min','frozen'))}
+	{:hook('import_js',array('zepto','frozen'))}
 
 	<script type="text/javascript">
 

@@ -7,11 +7,11 @@
         <meta name="format-detection" content="telephone=no" />
         <title>微信捐赠</title>
         {:hook('jssdk', false)}
-        {:hook('import_css', 'weui')}
+        {:hook('import_css', array('0.4.3'=>'weui'))}
         <style type="text/css">
             .page{
                 max-width: 640px;
-                margin: -10px auto 10px;
+                margin: 10px auto 10px;
             }
 
             .page_title{
@@ -29,7 +29,7 @@
                 clear: both;
             }
             .button_sp_area{
-                margin-top: 10px;
+                margin: 10px;
             }
         </style>
     </head>
@@ -92,7 +92,7 @@
             </div>
         </div>        
  
-    {:hook('import_js', 'jquery.min')}
+    {:hook('import_js', 'jquery')}
     <script type="text/javascript">
 
         $(document).on('click', '.quickly_donate', function() {

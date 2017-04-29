@@ -9,7 +9,15 @@ return array(
 	'logo' => 'logo.png',
 	'config' => array(
 		'respond_rule' => 1,
-		'setting' => 0,
+		'setting' => 1,
+		'setting_list' => array(
+			'default_search_keyword' => array(
+				'title' => '默认查询关键词',
+				'type' => 'text',
+				'placeholder' => '餐馆',
+				'tip' => '例如此处填写的是餐馆，当用户发送位置消息时，默认查询附近的餐馆信息'
+			)
+		),
 		'entry' => 0,
 		'menu' => 0
 	)
