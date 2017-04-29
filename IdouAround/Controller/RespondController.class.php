@@ -40,6 +40,20 @@ class RespondController extends ApiController {
 					reply_news($articles);
 				}
 			}	
+		} elseif ($message['MsgType'] == 'event') {
+			$content = $message['EventKey'];
+			if ($content == '退出') {
+				$this->end_context();
+				reply_text('已退出周边查询模式');
+			}
+			preg_match('/^周边(.+)/', $content, $m);
+			if ($m[1]) {								// 要查询的信息类型存在
+				$this->begin_context(30,array('what'=>$m[1]));
+				$context = $this->get_context();
+				reply_text('请发送地理位置来查询周边的'.$m[1].'信息');
+			} else {	
+				reply_text('请输入要查询的信息类型，如：周边KTV，周边酒店');
+			}
 		} elseif ($message['MsgType'] == 'text') {										// 发送文本消息
 			$content = $message['Content'];
 			if ($content == '退出') {
