@@ -1,33 +1,24 @@
-<?php 
-
-namespace Addons\IdouGuestbook\Model;
-use Think\Model;
+<?php
 
 /**
  * 留言数据管理模型
- * @author 艾逗笔<765532665@qq.com>
+ * @author 艾逗笔<http://idoubi.cc>
  */
+namespace Addons\IdouGuestbook\Model;
+use Think\Model;
+
 class IdouGuestbookListModel extends Model {
-
-    /**
-     * 自动验证
-     * @author 艾逗笔<765532665@qq.com>
-     */
-    protected $_validate = array(
-    	array('nickname', 'require', '用户昵称不能为空'),
-    	array('content', 'require', '留言内容不能为空')
-    );
-
-    /**
-     * 自动完成
-     * @author 艾逗笔<765532665@qq.com>
-     */
-    protected $_auto = array(
-   		array('mpid', 'get_mpid', 1, 'function'),
-   		array('openid', 'get_openid', 1, 'function'),
-   		array('create_time', 'time', 1, 'function')
-    );
-
+	
+	/**
+	 * 获取数据列表
+	 */
+	public function get($page = 1, $per = 10, $map = [], $order = 'create_time desc') {
+		if (!isset($map['mpid'])) {
+			$map['mpid'] = get_mpid();
+		}
+		return $this->where($map)->page($page, $per)->order($order)->select();
+	}
+	
 }
 
 ?>
