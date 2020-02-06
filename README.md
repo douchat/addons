@@ -3,7 +3,7 @@
 ## 1. 下载并安装douchat框架
 
 ```
-git clone https://github.com/mikemintang/douchat.git douchat
+git clone https://github.com/idoubi/douchat.git douchat
 ```
 
 ## 2. 进入插件目录并获取插件
@@ -11,7 +11,7 @@ git clone https://github.com/mikemintang/douchat.git douchat
 ```
 cd douchat/Addons/
 git init
-git remote add origin https://github.com/mikemintang/douchat_addons.git
+git remote add origin https://github.com/idoubi/douchat-addons.git
 git pull origin master
 ```
 
@@ -21,4 +21,4 @@ fork此仓库，将开发好的插件提交到自己的仓库，并发送pull re
 
 # 联系我
 
-QQ：765532665
+![](./author.png)
